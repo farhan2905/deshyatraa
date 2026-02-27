@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-primary-light antialiased;
+    font-family: 'General Sans Variable', 'Inter', system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'General Sans Variable', 'Inter', system-ui, sans-serif;
+    @apply font-bold text-primary;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+
+  /* Exploreza Specific Typography */
+  .giant-bg-text {
+    @apply text-[8rem] md:text-[14rem] lg:text-[18rem] font-light uppercase leading-none tracking-tight select-none;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+  }
+
+  .giant-bg-text-dark {
+    @apply text-[8rem] md:text-[14rem] lg:text-[18rem] font-light uppercase leading-none tracking-tight select-none;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .giant-bg-text-solid {
+    @apply text-[6rem] md:text-[10rem] lg:text-[14rem] font-medium uppercase leading-none tracking-tight select-none;
+    color: #F8F4EF;
+    /* The giant ABOUT color */
+  }
+
+  @keyframes circleProgress {
+    0% {
+      stroke-dashoffset: 490;
+    }
+
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .exploreza-card {
+    @apply rounded-[16px] overflow-hidden;
+  }
+
+  .exploreza-button {
+    @apply bg-accent hover:bg-accent-hover text-white rounded-md font-bold px-8 py-4 transition-all uppercase tracking-widest text-sm;
+  }
+
+  .animate-dash-draw {
+    stroke-dasharray: 8, 8;
+    animation: dash-draw 60s linear infinite;
+  }
+
+  @keyframes slowZoomOut {
+    from {
+      transform: scale(1.15);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .animate-slow-zoom-out {
+    animation: slowZoomOut 6s ease-out forwards;
+  }
+}
+
+@keyframes dash-draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
