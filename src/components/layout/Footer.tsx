@@ -30,9 +30,11 @@ const Footer = () => {
                     {/* Brand Col */}
                     <div className="space-y-6">
                         <Link to="/" className="flex items-center gap-2">
-                            <Link to="/" className="text-3xl font-bold tracking-tighter text-primary flex items-center gap-2">
-                                DESH YATRAA
-                            </Link>
+                            <img
+                                src="/logo.png"
+                                alt="Desh Yatraa Logo"
+                                className="h-10 md:h-12 w-auto object-contain"
+                            />
                         </Link>
                         <p className="text-gray-500 leading-relaxed max-w-xs">
                             Discover unforgettable travel experiences. We curate the best trips for corporations, groups, and individuals.
@@ -69,7 +71,7 @@ const Footer = () => {
                         <ul className="space-y-4">
                             <li className="flex items-start gap-3">
                                 <MapPin size={20} className="text-accent shrink-0 mt-0.5" />
-                                <span className="text-gray-500 font-medium">D-22 Aagam Viviana,Opp Florence 395007</span>
+                                <span className="text-gray-500 font-medium">D-22 Aagam Viviana,Opp Florence Vesu,395007</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Phone size={20} className="text-accent shrink-0" />

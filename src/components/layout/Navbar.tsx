@@ -21,9 +21,11 @@ const Navbar = () => {
             <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
                 {/* Logo */}
                 <Link to="/" className="flex items-center gap-2 z-50 relative">
-                    <div className={`font-display font-medium text-2xl tracking-tight transition-colors ${isScrolled || mobileMenuOpen ? 'text-primary' : 'text-white'}`}>
-                        DESH YATRAA
-                    </div>
+                    <img 
+                        src="/logo.png" 
+                        alt="Desh Yatraa Logo" 
+                        className="transition-all duration-300 h-12 sm:h-14 md:h-16 w-auto object-contain"
+                    />
                 </Link>
 
                 {/* Right Actions - Minimalist */}
@@ -61,8 +63,12 @@ const Navbar = () => {
                         </Link>
                     ))}
                     <div className="mt-8 border-t border-gray-100 pt-8">
-                        <Link to="/" className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2 z-50">
-                            DESH YATRAA
+                        <Link to="/" className="flex items-center gap-2 z-50 relative">
+                            <img 
+                                src="/logo.png" 
+                                alt="Desh Yatraa Logo" 
+                                className="h-12 md:h-16 w-auto object-contain"
+                            />
                         </Link>
                     </div>
                 </div>

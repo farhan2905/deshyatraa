@@ -52,7 +52,7 @@ const HoneymoonPackages = () => {
             <div className="container mx-auto px-6 md:px-12 relative z-10">
                 {/* Centered White Header Sequence */}
                 <div className="text-center mb-16 max-w-2xl mx-auto pt-8">
-                    <h2 className="text-[2.5rem] font-medium text-white mb-3 tracking-tight drop-shadow-sm">Honeymoon tour packages</h2>
+                    <h2 className="text-3xl md:text-[2.5rem] font-medium text-white mb-3 md:mb-4 tracking-tight drop-shadow-sm leading-tight">Honeymoon tour packages</h2>
                     <p className="text-white/80 text-[15px]">Lorem ipsum dolor sit amet consectetur. Ac lobortis tempus tincidunt suscipit volutpat nunc condimentum imperdiet tincidunt.</p>
                 </div>
 

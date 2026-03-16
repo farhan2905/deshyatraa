@@ -77,7 +77,7 @@ const HotDeals = () => {
             <div className="container mx-auto px-6 md:px-12 relative z-10">
                 {/* Centered Header */}
                 <div className="text-center mb-16 max-w-2xl mx-auto">
-                    <h2 className="text-4xl md:text-5xl font-medium text-primary mb-4 tracking-tight">Hot deals on selected trips</h2>
+                    <h2 className="text-3xl md:text-5xl font-medium text-primary mb-4 tracking-tight leading-tight">Hot deals on selected trips</h2>
                     <p className="text-gray-600 text-lg">Curated packages offering the best value for your upcoming adventures.</p>
                 </div>
 

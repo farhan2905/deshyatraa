@@ -115,17 +115,17 @@ const Hero = () => {
                             {/* Bottom Content Area */}
                             <div className="container mx-auto px-6 md:px-12 flex flex-col items-start gap-8 z-30">
                                 <div className="max-w-xl text-white">
-                                    <h2 className={`text-5xl md:text-6xl font-medium mb-4 tracking-tight drop-shadow-md ${headlineClasses}`}>{s.title}</h2>
-                                    <p className={`text-lg text-gray-200 mb-8 max-w-md drop-shadow-sm ${descClasses}`}>{s.description}</p>
+                                    <h2 className={`text-4xl sm:text-5xl md:text-6xl font-medium mb-4 tracking-tight drop-shadow-md ${headlineClasses}`}>{s.title}</h2>
+                                    <p className={`text-base md:text-lg text-gray-200 mb-8 max-w-md drop-shadow-sm ${descClasses}`}>{s.description}</p>
 
                                     <div className={`flex flex-col gap-1 ${priceClasses}`}>
-                                        <span className="text-sm font-medium text-gray-300">Package starting</span>
-                                        <div className="text-4xl font-bold">{s.price}</div>
+                                        <span className="text-xs md:text-sm font-medium text-gray-300">Package starting</span>
+                                        <div className="text-3xl md:text-4xl font-bold">{s.price}</div>
                                     </div>
                                 </div>
 
                                 {/* Placeholder to ensure exact same spacing as static controls below */}
-                                <div className="w-full h-40 opacity-0 pointer-events-none hidden md:block"></div>
+                                <div className="w-full h-32 sm:h-36 md:h-40 opacity-0 pointer-events-none shrink-0"></div>
                             </div>
                         </div>
                     </div>
@@ -143,27 +143,27 @@ const Hero = () => {
                     {/* Placeholder space for the animated text block so this aligns properly to the bottom edge */}
                     <div className="flex-grow hidden md:block"></div>
 
-                    <div className="w-full flex flex-col-reverse md:flex-row justify-between items-start md:items-end pointer-events-auto mt-auto">
+                    <div className="w-full flex flex-row justify-between items-center md:items-end pointer-events-auto mt-auto z-50">
 
                         {/* Pagination/Controls */}
                         <div className="flex gap-4">
-                            <button onClick={prevSlide} disabled={isAnimating} className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors backdrop-blur-sm disabled:opacity-50">
+                            <button onClick={prevSlide} disabled={isAnimating} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors backdrop-blur-sm disabled:opacity-50">
                                 <ArrowLeft size={20} />
                             </button>
-                            <button onClick={nextSlide} disabled={isAnimating} className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors backdrop-blur-sm disabled:opacity-50">
+                            <button onClick={nextSlide} disabled={isAnimating} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors backdrop-blur-sm disabled:opacity-50">
                                 <ArrowRight size={20} />
                             </button>
                         </div>
 
                         {/* Circular Explore Button */}
-                        <div className="relative w-40 h-40 flex items-center justify-center shrink-0 mt-8 md:mt-0">
+                        <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 flex items-center justify-center shrink-0">
                             {/* Background dashed circle */}
                             <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 160 160">
                                 <circle
                                     cx="80" cy="80" r="78"
                                     fill="none"
                                     stroke="rgba(255,255,255,0.3)"
-                                    strokeWidth="1"
+                                    strokeWidth="1.5"
                                     strokeDasharray="4 4"
                                 />
                                 {/* Animated solid circle */}
@@ -172,14 +172,14 @@ const Hero = () => {
                                     cx="80" cy="80" r="78"
                                     fill="none"
                                     stroke="white"
-                                    strokeWidth="2"
+                                    strokeWidth="2.5"
                                     strokeDasharray={2 * Math.PI * 78}
                                     strokeDashoffset={2 * Math.PI * 78}
                                     style={{ animation: 'circleProgress 6s linear forwards' }}
                                 />
                             </svg>
-                            <Link to="/tours" className="absolute inset-2 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors uppercase tracking-widest text-sm font-bold backdrop-blur-sm z-10 pointer-events-auto">
-                                Explore Now
+                            <Link to="/tours" className="absolute inset-2 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors uppercase tracking-widest text-[10px] sm:text-xs md:text-sm font-bold backdrop-blur-sm z-10 pointer-events-auto text-center px-4 leading-tight">
+                                Explore<br className="md:hidden" /> Now
                             </Link>
                         </div>
                     </div>
