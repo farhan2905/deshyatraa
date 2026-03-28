@@ -77,7 +77,7 @@ const continents = [
 ];
 
 const SmallContinentCard = ({ dest }: { dest: any }) => (
-    <Link to="/tour-details" className="bg-white rounded-[16px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 group flex flex-col h-[400px] border border-gray-100">
+    <Link to="/tours" className="bg-white rounded-[16px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 group flex flex-col h-[400px] border border-gray-100">
         <div className="relative h-[200px] w-full overflow-hidden shrink-0">
             <img
                 src={dest.image}
@@ -123,7 +123,7 @@ const SmallContinentCard = ({ dest }: { dest: any }) => (
 );
 
 const LargeContinentCard = ({ dest }: { dest: any }) => (
-    <Link to="/tour-details" className="relative w-full h-[400px] rounded-[16px] overflow-hidden group block shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100">
+    <Link to="/tours" className="relative w-full h-[400px] rounded-[16px] overflow-hidden group block shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100">
         <img
             src={dest.image}
             alt={dest.title}

@@ -2,7 +2,17 @@ import { useState, useEffect } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const slides = [
+interface Slide {
+    id: string | number;
+    bgText: string;
+    title: string;
+    description: string;
+    price: string;
+    image: string;
+    tourId?: string;
+}
+
+const fallbackSlides: Slide[] = [
     {
         id: 1,
         bgText: 'DEEP CAVES',
@@ -22,9 +32,30 @@ const slides = [
 ];
 
 const Hero = () => {
+    const [slides, setSlides] = useState<Slide[]>(fallbackSlides);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [previousSlide, setPreviousSlide] = useState<number | null>(null);
     const [isAnimating, setIsAnimating] = useState(false);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/api/tours?featured=1')
+            .then(res => res.json())
+            .then(data => {
+                if (data.length > 0) {
+                    const dynamicSlides = data.slice(0, 3).map((tour: any) => ({
+                        id: tour.id,
+                        bgText: (tour.destination_region || 'ADVENTURE').split(',')[0].toUpperCase(),
+                        title: tour.title,
+                        description: tour.description?.substring(0, 110) + '...',
+                        price: `$${tour.price}`,
+                        image: tour.image,
+                        tourId: tour.id
+                    }));
+                    setSlides(dynamicSlides);
+                }
+            })
+            .catch(() => {});
+    }, []);
 
     const changeSlide = (newIndex: number) => {
         if (isAnimating || newIndex === currentSlide) return;
@@ -43,7 +74,7 @@ const Hero = () => {
     useEffect(() => {
         const timer = setInterval(nextSlide, 6000); // Changed to 6s to match actual time
         return () => clearInterval(timer);
-    }, [currentSlide, isAnimating]);
+    }, [currentSlide, isAnimating, slides.length]);
 
     return (
         <section className="relative h-screen w-full overflow-hidden bg-primary-dark">
@@ -178,7 +209,7 @@ const Hero = () => {
                                     style={{ animation: 'circleProgress 6s linear forwards' }}
                                 />
                             </svg>
-                            <Link to="/tours" className="absolute inset-2 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors uppercase tracking-widest text-[10px] sm:text-xs md:text-sm font-bold backdrop-blur-sm z-10 pointer-events-auto text-center px-4 leading-tight">
+                            <Link to={slides[currentSlide]?.tourId ? `/tours/${slides[currentSlide].tourId}` : "/tours"} className="absolute inset-2 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors uppercase tracking-widest text-[10px] sm:text-xs md:text-sm font-bold backdrop-blur-sm z-10 pointer-events-auto text-center px-4 leading-tight">
                                 Explore<br className="md:hidden" /> Now
                             </Link>
                         </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ShoppingBag } from 'lucide-react';
+import { Menu, X, ShoppingBag, User } from 'lucide-react';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -37,6 +37,10 @@ const Navbar = () => {
                         </span>
                     </button>
 
+                    <Link to="/login" className={`transition-colors hover:opacity-70 ${isScrolled || mobileMenuOpen ? 'text-primary' : 'text-white'}`}>
+                        <User size={24} strokeWidth={1.5} />
+                    </Link>
+
                     <button
                         className={`transition-colors hover:opacity-70 ${isScrolled || mobileMenuOpen ? 'text-primary' : 'text-white'}`}
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -51,6 +55,7 @@ const Navbar = () => {
                         { label: 'Destinations', path: '/destinations' },
                         { label: 'Tours', path: '/tours' },
                         { label: 'Groups', path: '/groups' },
+                        { label: 'Blogs', path: '/blogs' },
                         { label: 'About', path: '/about' }
                     ].map((item) => (
                         <Link

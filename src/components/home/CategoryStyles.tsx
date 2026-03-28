@@ -1,38 +1,67 @@
-import { Briefcase, Users, PartyPopper, Compass } from 'lucide-react';
+import { Briefcase, Users, PartyPopper, Compass, Heart, Mountain, Camera, Palmtree } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-const categories = [
-    {
-        id: 1,
-        title: "Corporate Offsites",
-        icon: Briefcase,
-        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop",
-        iconBg: "bg-orange-500"
-    },
-    {
-        id: 2,
-        title: "Family Reunions",
-        icon: Users,
-        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=600&auto=format&fit=crop",
-        iconBg: "bg-teal-500"
-    },
-    {
-        id: 3,
-        title: "Friends Getaways",
-        icon: PartyPopper,
-        image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=600&auto=format&fit=crop",
-        iconBg: "bg-yellow-500"
-    },
-    {
-        id: 4,
-        title: "Solo Adventures",
-        icon: Compass,
-        image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=600&auto=format&fit=crop",
-        iconBg: "bg-emerald-600"
-    }
+const defaultImages = [
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1516584281313-162817d23d85?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop"
+];
+
+const visualStyles = [
+    { icon: Briefcase, iconBg: "bg-orange-500" },
+    { icon: Users, iconBg: "bg-teal-500" },
+    { icon: PartyPopper, iconBg: "bg-yellow-500" },
+    { icon: Compass, iconBg: "bg-emerald-600" },
+    { icon: Heart, iconBg: "bg-rose-500" },
+    { icon: Mountain, iconBg: "bg-blue-500" },
+    { icon: Camera, iconBg: "bg-purple-500" },
+    { icon: Palmtree, iconBg: "bg-cyan-500" }
+];
+
+const fallbackCategories = [
+    { id: 1, title: "Corporate Offsites", icon: Briefcase, image: defaultImages[0], iconBg: "bg-orange-500" },
+    { id: 2, title: "Family Reunions", icon: Users, image: defaultImages[1], iconBg: "bg-teal-500" },
+    { id: 3, title: "Friends Getaways", icon: PartyPopper, image: defaultImages[2], iconBg: "bg-yellow-500" },
+    { id: 4, title: "Solo Adventures", icon: Compass, image: defaultImages[3], iconBg: "bg-emerald-600" },
+    { id: 5, title: "Romantic Gateways", icon: Heart, image: defaultImages[4], iconBg: "bg-rose-500" },
+    { id: 6, title: "Mountain Treks", icon: Mountain, image: defaultImages[5], iconBg: "bg-blue-500" },
+    { id: 7, title: "Photography Tours", icon: Camera, image: defaultImages[6], iconBg: "bg-purple-500" },
+    { id: 8, title: "Beach Vacations", icon: Palmtree, image: defaultImages[7], iconBg: "bg-cyan-500" }
 ];
 
 const CategoryStyles = () => {
+    const [categories, setCategories] = useState(fallbackCategories);
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await fetch('http://localhost:5000/api/categories');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.length > 0) {
+                        const mapped = data.map((cat: any, i: number) => ({
+                            id: cat.id,
+                            title: cat.name,
+                            image: cat.image || defaultImages[i % defaultImages.length],
+                            icon: visualStyles[i % visualStyles.length].icon,
+                            iconBg: visualStyles[i % visualStyles.length].iconBg
+                        }));
+                        setCategories(mapped);
+                    }
+                }
+            } catch (e) {
+                console.error("Failed to load dynamic categories", e);
+            }
+        };
+        fetchCategories();
+    }, []);
+
     return (
         <section className="py-24 bg-[#FAFAFA]">
             <div className="container mx-auto px-6 md:px-12">
@@ -44,12 +73,12 @@ const CategoryStyles = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {categories.map((category) => {
+                    {categories.slice(0, 8).map((category, index) => {
                         const Icon = category.icon;
                         return (
                             <Link
-                                key={category.id}
-                                to="/tour-details"
+                                key={`${category.id}-${index}`}
+                                to={`/tours?category=${encodeURIComponent(category.title)}`}
                                 className="group relative block"
                             >
                                 {/* The Main Image Card - reduced height from 480 to 470px */}
@@ -68,7 +97,6 @@ const CategoryStyles = () => {
 
                                 {/* Floating Square Icon (Bottom Left Corner inset) */}
                                 <div className="absolute bottom-8 left-6 z-30">
-                                    {/* The thick white gap is achieved by a white background/border effect. Since the original has a tight white border with no shadow, we'll use a precise wrapper */}
                                     <div className="bg-white p-1 rounded-2xl shadow-sm">
                                         <div className={`w-14 h-14 ${category.iconBg} rounded-xl flex items-center justify-center text-white`}>
                                             <Icon size={24} strokeWidth={1.5} />
@@ -78,6 +106,12 @@ const CategoryStyles = () => {
                             </Link>
                         );
                     })}
+                </div>
+
+                <div className="mt-16 text-center">
+                    <Link to="/tours" className="inline-block bg-accent hover:bg-accent/90 text-white font-bold py-4 px-10 rounded-full transition-all hover:-translate-y-1 shadow-lg shadow-accent/30 text-sm tracking-wide uppercase">
+                        View More Styles
+                    </Link>
                 </div>
             </div>
         </section>

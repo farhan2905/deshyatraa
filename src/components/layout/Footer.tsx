@@ -88,7 +88,7 @@ const Footer = () => {
                 {/* Bottom Footer */}
                 <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-gray-200 gap-6">
                     <div className="text-gray-500 font-medium">
-                        &copy; {new Date().getFullYear()} Desh Yatraa. Replicated Design for Concept.
+                        &copy; {new Date().getFullYear()} Desh Yatraa.
                     </div>
 
                     {/* Solid Orange Circular Social Icons */}

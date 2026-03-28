@@ -1,0 +1,28 @@
+interactive rebase in progress; onto a5744e4
+Last command done (1 command done):
+   pick fa2c586 feat(ui): replace text logo with extracted transparent PDF logo and improve mobile responsiveness
+No commands remaining.
+You are currently rebasing branch 'main' on 'a5744e4'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   src/App.tsx
+	modified:   src/components/home/Hero.tsx
+	modified:   src/components/home/HoneymoonPackages.tsx
+	modified:   src/components/home/HotDeals.tsx
+	modified:   src/components/layout/Navbar.tsx
+	modified:   src/index.css
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+	added by them:   public/logo.png
+	both modified:   src/components/layout/Footer.tsx
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	git_status.txt
+

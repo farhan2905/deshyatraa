@@ -7,6 +7,13 @@ import Tours from './pages/Tours'
 import TourDetails from './pages/TourDetails'
 import About from './pages/About'
 import Destinations from './pages/Destinations'
+import Login from './pages/Login'
+import UserProfile from './pages/UserProfile'
+import AdminDashboard from './pages/AdminDashboard'
+import AdminLogin from './pages/AdminLogin'
+import FloatingInquiry from './components/layout/FloatingInquiry'
+import Blogs from './pages/Blogs'
+import BlogDetails from './pages/BlogDetails'
 
 // Simple component to scroll to top on route change
 function ScrollToTop() {
@@ -30,8 +37,13 @@ function App() {
           <Route path="/tours" element={<Tours />} />
           <Route path="/destinations" element={<Destinations />} />
           <Route path="/about" element={<About />} />
-          {/* Using a static route for demo. In real app: /tours/:id */}
-          <Route path="/tour-details" element={<TourDetails />} />
+          <Route path="/tours/:id" element={<TourDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/tours" element={<AdminDashboard />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:id" element={<BlogDetails />} />
 
           {/* Redirect singular incorrect URLs to plural valid ones */}
           <Route path="/destination" element={<Navigate to="/destinations" replace />} />
@@ -41,6 +53,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+      <FloatingInquiry />
       <Footer />
     </div>
   )
